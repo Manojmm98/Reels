@@ -1,7 +1,8 @@
 import React,{useState,useEffect,useContext} from 'react'
-import {auth} from '..firebase/'
+import {auth} from '../firebase'
 // here we just create a context and intially we give default value as empty
-const AuthContext= React.createContext()
+export const AuthContext= React.createContext()
+// we pass children here as a props and when we call it through authprovider we will get the value which is given by usecontext
 function AuthProvider({children}) {
     // now set two ststefor currentuser and  loading State and intially there will be no user so currentuser is empty and loading is true
     const [currentuser,setCurrentUser]=useState();
@@ -22,7 +23,8 @@ function AuthProvider({children}) {
         return auth.signOut();
     }
     // we want to add only componentsdidmount so we use useeffect to check changes in user's log in state
-    // to unsubscribe a user we used a function onauthstatuschange which set the current user as user 
+    // to unsubscribe a user we used a function onauthstatuschange which set the current user as user
+    // here we use unmount as unsubscribe on return statment to preserve that state  untill a certain time for eg.. if a user  logged in and close the tab then untill a certain time it will remain logged in
     useEffect(() => {
         const unsubscribe =auth.onAuthStateChanged(user=>{
             setCurrentUser(user);
@@ -40,7 +42,7 @@ function AuthProvider({children}) {
         logOut
     }
     // if there is not loading ocuur that  means we will show our log in page at that time othewise blank
-
+   // here we render the children which is passed through authcontext and we will get that value
     return (
         <AuthContext.Provider value={value} >
             {!loading?children:''}

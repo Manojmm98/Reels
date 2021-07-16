@@ -24,4 +24,4 @@ firebase.initializeApp(
    getCurrentTimeStamp: firebase.firestore.FieldValue.serverTimestamp,
   }
 
- export const storage = firestore.storage();
+ export const storage = firebase.storage();
