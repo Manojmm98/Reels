@@ -4,7 +4,8 @@ import {auth} from '../firebase'
 export const AuthContext= React.createContext()
 // we pass children here as a props and when we call it through authprovider we will get the value which is given by usecontext
 function AuthProvider({children}) {
-    // now set two ststefor currentuser and  loading State and intially there will be no user so currentuser is empty and loading is true
+    // now set two state for currentuser and  loading State and intially there will be no user so currentuser is empty and loading is true because
+    // we want childrens of auth provider to run after 1st render
     const [currentuser,setCurrentUser]=useState();
     const [loading,setLoading]=useState(true);
 
