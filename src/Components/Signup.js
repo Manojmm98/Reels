@@ -4,7 +4,7 @@ import React,{useState,useEffect,useContext} from 'react'
 // we import authcontext as object as it was a object
 import {AuthContext} from '../Context/AuthProvider'
 // importing storage from firebase
-import {storage} from '../firebase'
+import {storage,database} from '../firebase'
 
 function Signup() {
 // we created all the state requires for sign up page
@@ -28,6 +28,8 @@ const handleSignup= async (e) =>{
       e.preventDefault();
       // before fetching the details we will set loading as true because for to load the page
       // we have to give uid to user which will be fetched from firebase so we will get the response by await 
+      // as it is a async function we will drop it into try and catch it and
+      try{
      setLoading(true);
      let response = await signup(email,password);
      let uid = response.user.uid;
@@ -51,15 +53,36 @@ const handleSignup= async (e) =>{
          setTimeout(() => {
              setError('')
          }, 2000);
+         setLoading(false);
     }
     // it is a async function so we have add await while gettig url
-   async function fn3(){
+   async  function fn3(){
         let downloadurl = await uploadtasklistner.snapshot.ref.getDownloadURL();
         console.log(downloadurl);
-    }
+        await database.users.doc(uid).set({
+            email:email, 
+            userId:uid,
+            username:name,
+            createdAt:database.getCurrentTimeStamp(),
+            profileUrl:downloadurl,
+            postIds:[]
+
+        })
 // after user logged in we will stop loading
      setLoading(false);
+     console.log('user has signed up');  
+    }
+     
 }
+catch(err) {
+    setError(error);
+    setTimeout(() =>
+        setError('')
+    , 2000);
+    setLoading(false)
+     }
+}
+
 // function for handling image while uploading if uploaded  file is  not null we will set our setFile as uploaded file
 let handleImageChange=(e)=>{
     let file = e.target.files[0];
@@ -72,7 +95,7 @@ let handleImageChange=(e)=>{
         <div>
             <form onSubmit={handleSignup}>
                 <div>
-                    <label htmlFor="">userName</label>
+                    <label htmlFor="">username</label>
                     <input type="text" value={name} onChange={(e)=>setName(e.target.value)}></input>
                 </div>
 
