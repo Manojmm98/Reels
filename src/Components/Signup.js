@@ -112,7 +112,7 @@ let handleImageChange=(e)=>{
                     <label htmlFor="profile">Profile Image</label>
                     <input type="file" accept='image/*' onChange={handleImageChange}></input>
                 </div>
-                <button type="submit" disabled={loading}>Login</button>
+                <button type="submit" disabled={loading}>Sign up</button>
 
             </form>
             

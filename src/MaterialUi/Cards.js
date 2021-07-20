@@ -16,6 +16,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import video from './vid.mp4'
+// module.css provises a uinque class to the element
+// we give this element a unique class name called style.vs and we created cards.module.css for that
+import Style from './Cards.module.css'
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -38,11 +41,7 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: red[500],
   },
-  vdo:{
-    height: '60vh',
-    width: '100%',
-    marginBottom: '20px'
-  }
+ 
 }));
 
 export default function Cards() {
@@ -67,9 +66,9 @@ export default function Cards() {
           </IconButton>
         }
         title="Manoj Kumar"
-        subheader="September 21, 2021"
+        subheader="August 19, 2021"
       />
-     <video  className={classes.vdo}src={video} autoPlay controls muted ></video>
+     <video  className={Style.vs}src={video} autoPlay controls muted ></video>
      
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
