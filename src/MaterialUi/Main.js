@@ -1,9 +1,13 @@
 import React from 'react'
-
+import Navbar from './Navbar'
+import UploadButtons from './UploadButtons'
+import Cards from './Cards'
 function Main() {
     return (
         <div>
-           <h1>Welcome</h1> 
+            <Navbar/>
+         <UploadButtons/>
+         <Cards/>
         </div>
     )
 }

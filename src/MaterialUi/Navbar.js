@@ -21,9 +21,15 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    color:'black',  
+    fontFamily:'cursive',
+    fontSize: '30px'
   },
   background:{
-      backgroundColor:'blue',
+      backgroundColor:'white',
+  },
+  icons: {
+    color:'black',
   }
 }));
 
@@ -47,7 +53,7 @@ export default function Navbar() {
         <Toolbar>
           
           <Typography variant="h6" className={classes.title}>
-            Instagram
+            Reels
           </Typography>
           { (
             <div>
@@ -58,7 +64,7 @@ export default function Navbar() {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                <AccountCircle className={classes.icons}/>
               </IconButton>
               <Menu
                 id="menu-appbar"
