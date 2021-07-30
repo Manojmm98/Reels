@@ -11,13 +11,15 @@ import Ioa from './Ioa'
 // we have to show separate pages for login ,sign up and feed so use routing to do it
 // we want our default page as feed so give exact to it
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom'
+// but here we have to make the routing for feed authnticated so that it will shown to authnticated user only
+import PrivateRoute from './PrivateRoute'
 function App() {
   return (
     <Router>
       <AuthProvider>
       <Switch>
       
-      <Route exact path="/" component={Feed}></Route>
+      <PrivateRoute exact path="/" component={Feed}></PrivateRoute>
 
       <Route path='/login' component={Login}></Route>
 
